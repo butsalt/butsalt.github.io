@@ -27,6 +27,25 @@ article section > h1{
 	font-weight: normal;
 }
 
+article section > h1::before{
+	content: "[";
+}
+
+article section > h1::after{
+	content: "]";
+}
+
+article p{
+	text-indent: 2em;
+}
+
 .profile{
 	text-align: center;
+}
+
+.profile p:nth-child(1){
+	color: #444;
+	font-size: 2em;
+	letter-spacing: 0.5em;
+	text-indent: 0.5em;
 }
