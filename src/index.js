@@ -1,1 +1,3 @@
-console.log('init');
+import * as button from './button';
+
+button.load();
