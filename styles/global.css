@@ -6,10 +6,8 @@ a{
 html{
 	font-family: 'Open Sans', 'Microsoft YaHei', Arial, sans-serif;
 	color: #999;
-}
-
-article{
-	margin-left: 2em;
+	max-width: 1024px;
+	margin: 0 auto;
 }
 
 body > h1, header h1, article h1{
@@ -20,7 +18,15 @@ body > h1, article > h1{
 	font-size: 1.5em;
 }
 
+article{
+	margin-left: 2em;
+}
+
 article section > h1{
 	font-size: 1em;
 	font-weight: normal;
+}
+
+.profile{
+	text-align: center;
 }
