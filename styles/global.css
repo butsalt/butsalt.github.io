@@ -3,6 +3,12 @@ a{
 	color: inherit;
 }
 
+.button{
+	border: 1px #999 solid;
+	padding: 0 1.4em;
+	border-radius: 0.3em 0.3em;
+}
+
 html{
 	font-family: 'Open Sans', 'Microsoft YaHei', Arial, sans-serif;
 	color: #999;
