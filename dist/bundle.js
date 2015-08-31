@@ -99,10 +99,7 @@
 		_.toArray(document.getElementsByClassName('button')).forEach(transform);
 	}
 	
-	function transform(el) {
-		debugger;
-		console.log(el);
-	}
+	function transform(el) {}
 	
 	exports.load = load;
 

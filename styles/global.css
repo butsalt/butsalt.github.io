@@ -6,9 +6,12 @@ a{
 .button{
 	border: 1px #999 solid;
 	border-radius: 0.3em 0.3em;
-}
-a.button{
 	padding: 0 1.4em;
+	transition: 0.2s ease-in-out;
+}
+
+.button:hover{
+	color: #fff;
 }
 
 html{
