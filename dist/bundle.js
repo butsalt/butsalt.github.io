@@ -1294,11 +1294,35 @@
 	}
 	
 	function transform(el) {
-		document.addEventListener('scroll', scrollHandler.bind(el));
+		var h1El = el.getElementsByTagName('h1')[0];
+		var thresholdValue = h1El.offsetTop + h1El.offsetHeight;
+		cache.set(el, {
+			thresholdValue: thresholdValue
+		});
+	
+		console.log('-{thresholdValue}px');
+		el.style.setProperty('top', '-' + thresholdValue + 'px');
+	
+		var handler = scrollHandler.bind(el);
+		document.addEventListener('scroll', handler);
+		document.addEventListener('mousewheel', handler);
 	}
 	
 	function scrollHandler(e) {
 		var me = this;
+		var curValue = document.body.scrollTop || document.documentElement.scrollTop;
+	
+		var _cache$get = cache.get(me);
+	
+		var thresholdValue = _cache$get.thresholdValue;
+	
+		if (curValue > thresholdValue) {
+			me.style.setProperty('position', 'relative');
+			me.style.setProperty('top', curValue - thresholdValue + 'px');
+		} else {
+			me.style.setProperty('position', 'static');
+			me.style.setProperty('top', 'auto');
+		}
 	}
 	
 	load();
