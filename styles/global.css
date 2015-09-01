@@ -1,3 +1,11 @@
+.center{
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1024px;
+}
+
 a{
 	text-decoration: none;
 	color: inherit;
@@ -6,22 +14,20 @@ a{
 html{
 	font-family: "Open Sans", "Microsoft YaHei", Arial, sans-serif;
 	color: #999;
-	max-width: 1024px;
-	margin: 0 auto;
 	font-size: 16px;
 }
 
-body > h1, header > h1, article h1{
+header > h1, main > h1, article h1{
 	color: #444;
 }
 
-body > h1, article > h1{
+main > h1, article > h1{
 	font-size: 1.5em;
 }
 
 header{
-	z-index: 999;
 	background-color: #fff;
+	z-index: 999;
 }
 
 header div{
@@ -33,6 +39,11 @@ header p:nth-child(1){
 	font-size: 2em;
 	letter-spacing: 0.5em;
 	text-indent: 0.5em;
+}
+
+main{
+	position: absolute;
+	top: 212px;
 }
 
 article{

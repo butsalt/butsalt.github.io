@@ -1295,13 +1295,12 @@
 	
 	function transform(el) {
 		var h1El = el.getElementsByTagName('h1')[0];
-		var thresholdValue = h1El.offsetTop + h1El.offsetHeight;
+		var rollbackHeight = h1El.offsetHeight;
 		cache.set(el, {
-			thresholdValue: thresholdValue
+			rollbackHeight: rollbackHeight,
+			thresholdValue: h1El.offsetTop + rollbackHeight,
+			reachedThreshold: false
 		});
-	
-		console.log('-{thresholdValue}px');
-		el.style.setProperty('top', '-' + thresholdValue + 'px');
 	
 		var handler = scrollHandler.bind(el);
 		document.addEventListener('scroll', handler);
@@ -1310,18 +1309,23 @@
 	
 	function scrollHandler(e) {
 		var me = this;
+		var data = cache.get(me);
+	
 		var curValue = document.body.scrollTop || document.documentElement.scrollTop;
-	
-		var _cache$get = cache.get(me);
-	
-		var thresholdValue = _cache$get.thresholdValue;
+		var thresholdValue = data.thresholdValue;
 	
 		if (curValue > thresholdValue) {
-			me.style.setProperty('position', 'relative');
-			me.style.setProperty('top', curValue - thresholdValue + 'px');
+			if (!data.reachedThreshold) {
+				data.reachedThreshold = true;
+				me.style.setProperty('position', 'fixed');
+				me.style.setProperty('top', -data.rollbackHeight + 'px');
+			}
 		} else {
-			me.style.setProperty('position', 'static');
-			me.style.setProperty('top', 'auto');
+			if (data.reachedThreshold) {
+				data.reachedThreshold = false;
+				me.style.setProperty('position', 'static');
+				me.style.setProperty('top', 'auto');
+			}
 		}
 	}
 	

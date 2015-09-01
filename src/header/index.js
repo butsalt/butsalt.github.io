@@ -9,13 +9,12 @@ function load(){
 
 function transform( el ){
 	var h1El = el.getElementsByTagName('h1')[0];
-	let thresholdValue = h1El.offsetTop + h1El.offsetHeight;
+	let rollbackHeight = h1El.offsetHeight;
 	cache.set( el, {
-		thresholdValue
+		rollbackHeight,
+		thresholdValue: h1El.offsetTop + rollbackHeight,
+		reachedThreshold: false
 	} );
-
-	console.log(`-{thresholdValue}px`);
-	el.style.setProperty( 'top', `-${thresholdValue}px` );
 
 	let handler = scrollHandler.bind(el);
 	document.addEventListener( 'scroll', handler );
@@ -24,15 +23,23 @@ function transform( el ){
 
 function scrollHandler( e ){
 	let me = this;
-	let curValue = document.body.scrollTop || document.documentElement.scrollTop;
+	let data = cache.get(me);
 
-	let { thresholdValue } = cache.get(me);
+	let curValue = document.body.scrollTop || document.documentElement.scrollTop;
+	let thresholdValue = data.thresholdValue;
+
 	if( curValue>thresholdValue ){
-		me.style.setProperty( 'position', 'relative' );
-		me.style.setProperty( 'top', curValue - thresholdValue +'px' );
+		if( !data.reachedThreshold ){
+			data.reachedThreshold = true;
+			me.style.setProperty( 'position', 'fixed' );
+			me.style.setProperty( 'top', -data.rollbackHeight +'px' );
+		}
 	}else{
-		me.style.setProperty( 'position', 'static' );
-		me.style.setProperty( 'top', 'auto' );
+		if( data.reachedThreshold ){
+			data.reachedThreshold = false;
+			me.style.setProperty( 'position', 'static' );
+			me.style.setProperty( 'top', 'auto' );
+		}
 	}
 }
 
