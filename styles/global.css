@@ -3,17 +3,6 @@ a{
 	color: inherit;
 }
 
-.button{
-	border: 1px #999 solid;
-	border-radius: 0.3em 0.3em;
-	padding: 0 1.4em;
-	transition: 0.2s ease-in-out;
-}
-
-.button:hover{
-	color: #fff;
-}
-
 html{
 	font-family: "Open Sans", "Microsoft YaHei", Arial, sans-serif;
 	color: #999;
@@ -60,4 +49,26 @@ article p{
 	font-size: 2em;
 	letter-spacing: 0.5em;
 	text-indent: 0.5em;
+}
+
+.button{
+	display: inline-block;
+	border-radius: 0.3em 0.3em;
+	border: 1px #999 solid;
+}
+
+.button a{
+	transition: 200ms ease-in-out;
+	padding: 0 1.4em;
+}
+
+.button a:hover{
+	color: #fff;
+}
+
+.button canvas{
+	border-radius: 0.3em 0.3em;
+	pointer-events: none;
+	position: absolute;
+	z-index: -1;
 }
