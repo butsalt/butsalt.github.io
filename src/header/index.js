@@ -10,7 +10,7 @@ function load(){
 function transform( el ){
 	var h1El = el.getElementsByTagName('h1')[0];
 	cache.set( el, {
-		thresholdValue: h1El.offsetTop + h1El.offsetHeight,
+		thresholdValue: h1El.offsetTop + h1El.offsetHeight + 1,
 		reachedThreshold: false
 	} );
 
