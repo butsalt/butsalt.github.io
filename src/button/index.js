@@ -32,10 +32,8 @@ function initCanvas(){
 	let me = this;
 	let data = cache.get( me );
 
-	let rect = {
-		width: me.offsetWidth-2,
-		height: me.offsetHeight-2
-	};
+
+	let rect = me.getBoundingClientRect();
 	data.rect = rect;
 
 	let canvas = data.canvas;
@@ -107,11 +105,11 @@ function paintCircle( e, color ){
 		ctx.fill();
 
 		if( progress < animationDuration ){
-			requestAnimationFrame( paint );
+			_.animate( paint );
 		}
 	}
 
-	requestAnimationFrame( paint );
+	_.animate( paint );
 }
 
 load();

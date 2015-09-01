@@ -126,10 +126,7 @@
 		var me = this;
 		var data = cache.get(me);
 	
-		var rect = {
-			width: me.offsetWidth - 2,
-			height: me.offsetHeight - 2
-		};
+		var rect = me.getBoundingClientRect();
 		data.rect = rect;
 	
 		var canvas = data.canvas;
@@ -194,11 +191,11 @@
 			ctx.fill();
 	
 			if (progress < animationDuration) {
-				requestAnimationFrame(paint);
+				_.animate(paint);
 			}
 		}
 	
-		requestAnimationFrame(paint);
+		_.animate(paint);
 	}
 	
 	load();
@@ -1055,6 +1052,10 @@
 	var _lang = __webpack_require__(64);
 	
 	_defaults(exports, _interopExportWildcard(_lang, _defaults));
+	
+	var _animation = __webpack_require__(66);
+	
+	_defaults(exports, _interopExportWildcard(_animation, _defaults));
 
 /***/ },
 /* 52 */
@@ -1244,6 +1245,29 @@
 		animationDuration: 200 //ms
 	};
 	module.exports = exports["default"];
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	function animate(func) {
+		if (global.requestAnimationFrame) {
+			global.requestAnimationFrame(func);
+		} else {
+			setTimeout(function () {
+				var timestamp = new Date().getTime();
+				func(timestamp);
+			}, 16);
+		}
+	}
+	
+	exports.animate = animate;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }
 /******/ ]);
