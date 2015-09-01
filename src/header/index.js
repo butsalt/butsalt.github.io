@@ -9,10 +9,8 @@ function load(){
 
 function transform( el ){
 	var h1El = el.getElementsByTagName('h1')[0];
-	let rollbackHeight = h1El.offsetHeight;
 	cache.set( el, {
-		rollbackHeight,
-		thresholdValue: h1El.offsetTop + rollbackHeight,
+		thresholdValue: h1El.offsetTop + h1El.offsetHeight,
 		reachedThreshold: false
 	} );
 
@@ -27,12 +25,11 @@ function scrollHandler( e ){
 
 	let curValue = document.body.scrollTop || document.documentElement.scrollTop;
 	let thresholdValue = data.thresholdValue;
-
 	if( curValue>thresholdValue ){
 		if( !data.reachedThreshold ){
 			data.reachedThreshold = true;
 			me.style.setProperty( 'position', 'fixed' );
-			me.style.setProperty( 'top', -data.rollbackHeight +'px' );
+			me.style.setProperty( 'top', -thresholdValue +'px' );
 		}
 	}else{
 		if( data.reachedThreshold ){

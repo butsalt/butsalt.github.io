@@ -46,13 +46,13 @@
 
 	'use strict';
 	
-	var _interopRequireDefault = __webpack_require__(50)['default'];
+	var _interopRequireDefault = __webpack_require__(1)['default'];
 	
-	var _header = __webpack_require__(67);
+	var _header = __webpack_require__(2);
 	
 	var _header2 = _interopRequireDefault(_header);
 	
-	var _button = __webpack_require__(2);
+	var _button = __webpack_require__(66);
 	
 	var _button2 = _interopRequireDefault(_button);
 
@@ -63,20 +63,9 @@
 	"use strict";
 	
 	exports["default"] = function (obj) {
-	  if (obj && obj.__esModule) {
-	    return obj;
-	  } else {
-	    var newObj = {};
-	
-	    if (obj != null) {
-	      for (var key in obj) {
-	        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
-	      }
-	    }
-	
-	    newObj["default"] = obj;
-	    return newObj;
-	  }
+	  return obj && obj.__esModule ? obj : {
+	    "default": obj
+	  };
 	};
 	
 	exports.__esModule = true;
@@ -89,117 +78,49 @@
 	
 	var _WeakMap = __webpack_require__(3)['default'];
 	
-	var _interopRequireWildcard = __webpack_require__(1)['default'];
-	
-	var _interopRequireDefault = __webpack_require__(50)['default'];
+	var _interopRequireWildcard = __webpack_require__(50)['default'];
 	
 	var _util = __webpack_require__(51);
 	
 	var _ = _interopRequireWildcard(_util);
 	
-	var _config = __webpack_require__(65);
-	
-	var _config2 = _interopRequireDefault(_config);
-	
 	var cache = new _WeakMap();
 	
 	function load() {
-		_.toArray(document.getElementsByClassName('button')).forEach(transform);
+		_.toArray(document.getElementsByTagName('header')).forEach(transform);
 	}
 	
 	function transform(el) {
-	
-		var canvas = document.createElement('canvas');
-		canvas.setAttribute('width', '0');
-		canvas.setAttribute('height', '0');
-	
-		el.addEventListener('mouseenter', initCanvas);
-		el.addEventListener('mouseenter', enterHandler);
-		el.addEventListener('mouseleave', leaveHandler);
-	
+		var h1El = el.getElementsByTagName('h1')[0];
 		cache.set(el, {
-			canvas: canvas,
-			rect: null
+			thresholdValue: h1El.offsetTop + h1El.offsetHeight,
+			reachedThreshold: false
 		});
 	
-		var firstEl = el.childNodes[0];
-		el.insertBefore(canvas, firstEl);
+		var handler = scrollHandler.bind(el);
+		document.addEventListener('scroll', handler);
+		document.addEventListener('mousewheel', handler);
 	}
 	
-	function initCanvas() {
+	function scrollHandler(e) {
 		var me = this;
 		var data = cache.get(me);
 	
-		var rect = me.getBoundingClientRect();
-		data.rect = rect;
-	
-		var canvas = data.canvas;
-		canvas.setAttribute('width', rect.width);
-		canvas.setAttribute('height', rect.height);
-	
-		me.removeEventListener('mouseenter', initCanvas);
-	}
-	
-	function enterHandler(e) {
-		paintCircle.call(this, e, '#444');
-	}
-	
-	function leaveHandler(e) {
-		paintCircle.call(this, e, '#fff');
-	}
-	
-	function calDistance(_ref, x2, y2) {
-		var x1 = _ref.x;
-		var y1 = _ref.y;
-	
-		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y2 - x2, 2));
-	}
-	
-	function calRadius(pos, _ref2) {
-		var width = _ref2.width;
-		var height = _ref2.height;
-	
-		return Math.max(calDistance(pos, 0, 0), calDistance(pos, 0, height), calDistance(pos, width, 0), calDistance(pos, width, height));
-	}
-	
-	function paintCircle(e, color) {
-		var me = this;
-	
-		var x = e.offsetX - 1;
-		var y = e.offsetY - 1;
-	
-		var _cache$get = cache.get(me);
-	
-		var canvas = _cache$get.canvas;
-		var rect = _cache$get.rect;
-	
-		var ctx = canvas.getContext('2d');
-	
-		var radius = calRadius({
-			x: x,
-			y: y
-		}, rect);
-		var animationDuration = _config2['default'].animationDuration;
-	
-		var startTime = null;
-		function paint(timestamp) {
-			if (startTime === null) {
-				startTime = timestamp;
+		var curValue = document.body.scrollTop || document.documentElement.scrollTop;
+		var thresholdValue = data.thresholdValue;
+		if (curValue > thresholdValue) {
+			if (!data.reachedThreshold) {
+				data.reachedThreshold = true;
+				me.style.setProperty('position', 'fixed');
+				me.style.setProperty('top', -thresholdValue + 'px');
 			}
-	
-			var progress = timestamp - startTime;
-	
-			ctx.fillStyle = color;
-			ctx.beginPath();
-			ctx.arc(x, y, radius * progress / animationDuration, 0, 2 * Math.PI);
-			ctx.fill();
-	
-			if (progress < animationDuration) {
-				_.animate(paint);
+		} else {
+			if (data.reachedThreshold) {
+				data.reachedThreshold = false;
+				me.style.setProperty('position', 'static');
+				me.style.setProperty('top', 'auto');
 			}
 		}
-	
-		_.animate(paint);
 	}
 	
 	load();
@@ -1032,9 +953,20 @@
 	"use strict";
 	
 	exports["default"] = function (obj) {
-	  return obj && obj.__esModule ? obj : {
-	    "default": obj
-	  };
+	  if (obj && obj.__esModule) {
+	    return obj;
+	  } else {
+	    var newObj = {};
+	
+	    if (obj != null) {
+	      for (var key in obj) {
+	        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+	      }
+	    }
+	
+	    newObj["default"] = obj;
+	    return newObj;
+	  }
 	};
 	
 	exports.__esModule = true;
@@ -1057,7 +989,7 @@
 	
 	_defaults(exports, _interopExportWildcard(_lang, _defaults));
 	
-	var _animation = __webpack_require__(66);
+	var _animation = __webpack_require__(65);
 	
 	_defaults(exports, _interopExportWildcard(_animation, _defaults));
 
@@ -1240,20 +1172,6 @@
 /* 65 */
 /***/ function(module, exports) {
 
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports["default"] = {
-		animationDuration: 200 //ms
-	};
-	module.exports = exports["default"];
-
-/***/ },
-/* 66 */
-/***/ function(module, exports) {
-
 	/* WEBPACK VAR INJECTION */(function(global) {"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -1274,62 +1192,141 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _WeakMap = __webpack_require__(3)['default'];
 	
-	var _interopRequireWildcard = __webpack_require__(1)['default'];
+	var _interopRequireWildcard = __webpack_require__(50)['default'];
+	
+	var _interopRequireDefault = __webpack_require__(1)['default'];
 	
 	var _util = __webpack_require__(51);
 	
 	var _ = _interopRequireWildcard(_util);
 	
+	var _config = __webpack_require__(67);
+	
+	var _config2 = _interopRequireDefault(_config);
+	
 	var cache = new _WeakMap();
 	
 	function load() {
-		_.toArray(document.getElementsByTagName('header')).forEach(transform);
+		_.toArray(document.getElementsByClassName('button')).forEach(transform);
 	}
 	
 	function transform(el) {
-		var h1El = el.getElementsByTagName('h1')[0];
-		var rollbackHeight = h1El.offsetHeight;
+	
+		var canvas = document.createElement('canvas');
+		canvas.setAttribute('width', '0');
+		canvas.setAttribute('height', '0');
+	
+		el.addEventListener('mouseenter', initCanvas);
+		el.addEventListener('mouseenter', enterHandler);
+		el.addEventListener('mouseleave', leaveHandler);
+	
 		cache.set(el, {
-			rollbackHeight: rollbackHeight,
-			thresholdValue: h1El.offsetTop + rollbackHeight,
-			reachedThreshold: false
+			canvas: canvas,
+			rect: null
 		});
 	
-		var handler = scrollHandler.bind(el);
-		document.addEventListener('scroll', handler);
-		document.addEventListener('mousewheel', handler);
+		var firstEl = el.childNodes[0];
+		el.insertBefore(canvas, firstEl);
 	}
 	
-	function scrollHandler(e) {
+	function initCanvas() {
 		var me = this;
 		var data = cache.get(me);
 	
-		var curValue = document.body.scrollTop || document.documentElement.scrollTop;
-		var thresholdValue = data.thresholdValue;
+		var rect = me.getBoundingClientRect();
+		data.rect = rect;
 	
-		if (curValue > thresholdValue) {
-			if (!data.reachedThreshold) {
-				data.reachedThreshold = true;
-				me.style.setProperty('position', 'fixed');
-				me.style.setProperty('top', -data.rollbackHeight + 'px');
+		var canvas = data.canvas;
+		canvas.setAttribute('width', rect.width);
+		canvas.setAttribute('height', rect.height);
+	
+		me.removeEventListener('mouseenter', initCanvas);
+	}
+	
+	function enterHandler(e) {
+		paintCircle.call(this, e, '#444');
+	}
+	
+	function leaveHandler(e) {
+		paintCircle.call(this, e, '#fff');
+	}
+	
+	function calDistance(_ref, x2, y2) {
+		var x1 = _ref.x;
+		var y1 = _ref.y;
+	
+		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y2 - x2, 2));
+	}
+	
+	function calRadius(pos, _ref2) {
+		var width = _ref2.width;
+		var height = _ref2.height;
+	
+		return Math.max(calDistance(pos, 0, 0), calDistance(pos, 0, height), calDistance(pos, width, 0), calDistance(pos, width, height));
+	}
+	
+	function paintCircle(e, color) {
+		var me = this;
+	
+		var x = e.offsetX - 1;
+		var y = e.offsetY - 1;
+	
+		var _cache$get = cache.get(me);
+	
+		var canvas = _cache$get.canvas;
+		var rect = _cache$get.rect;
+	
+		var ctx = canvas.getContext('2d');
+	
+		var radius = calRadius({
+			x: x,
+			y: y
+		}, rect);
+		var animationDuration = _config2['default'].animationDuration;
+	
+		var startTime = null;
+		function paint(timestamp) {
+			if (startTime === null) {
+				startTime = timestamp;
 			}
-		} else {
-			if (data.reachedThreshold) {
-				data.reachedThreshold = false;
-				me.style.setProperty('position', 'static');
-				me.style.setProperty('top', 'auto');
+	
+			var progress = timestamp - startTime;
+	
+			ctx.fillStyle = color;
+			ctx.beginPath();
+			ctx.arc(x, y, radius * progress / animationDuration, 0, 2 * Math.PI);
+			ctx.fill();
+	
+			if (progress < animationDuration) {
+				_.animate(paint);
 			}
 		}
+	
+		_.animate(paint);
 	}
 	
 	load();
+
+/***/ },
+/* 67 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports["default"] = {
+		animationDuration: 200 //ms
+	};
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);
