@@ -55,6 +55,8 @@ article p{
 	display: inline-block;
 	border-radius: 0.3em 0.3em;
 	border: 1px #999 solid;
+	overflow: hidden;
+	position: relative;
 }
 
 .button a{
@@ -67,7 +69,6 @@ article p{
 }
 
 .button canvas{
-	border-radius: 0.3em 0.3em;
 	pointer-events: none;
 	position: absolute;
 	z-index: -1;
