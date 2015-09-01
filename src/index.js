@@ -1,1 +1,2 @@
-import * as button from './button';
+import header from './header';
+import button from './button';

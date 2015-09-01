@@ -11,12 +11,27 @@ html{
 	font-size: 16px;
 }
 
-body > h1, header h1, article h1{
+body > h1, header > h1, article h1{
 	color: #444;
 }
 
 body > h1, article > h1{
 	font-size: 1.5em;
+}
+
+header{
+	background-color: #fff;
+}
+
+header div{
+	text-align: center;
+}
+
+header p:nth-child(1){
+	color: #444;
+	font-size: 2em;
+	letter-spacing: 0.5em;
+	text-indent: 0.5em;
 }
 
 article{
@@ -38,17 +53,6 @@ article section > h1::after{
 
 article p{
 	text-indent: 2em;
-}
-
-.profile{
-	text-align: center;
-}
-
-.profile p:nth-child(1){
-	color: #444;
-	font-size: 2em;
-	letter-spacing: 0.5em;
-	text-indent: 0.5em;
 }
 
 .button{
