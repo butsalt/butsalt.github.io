@@ -2,7 +2,7 @@
   "name": "butsalt.github.io",
   "version": "1.0.0",
   "description": "Initalize my page.",
-  "main": "./dist/bundle.js",
+  "main": "./dist/page.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/butsalt/butsalt.github.io.git"
@@ -16,6 +16,11 @@
     "babel-core": "^5.8.23",
     "babel-loader": "^5.3.2",
     "babel-runtime": "^5.8.20",
+    "css-loader": "^0.16.0",
+    "extract-text-webpack-plugin": "^0.8.2",
     "webpack": "^1.12.0"
+  },
+  "dependencies": {
+    "normalize.css": "^3.0.3"
   }
 }

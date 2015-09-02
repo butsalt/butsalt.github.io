@@ -1,10 +1,15 @@
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        page: './src/index.js'
+    },
     output: {
         path: './dist',
-        filename: 'page.js',
+        filename: '[name].js',
         libraryTarget: "var",
-        library: "page"
+        library: "[name]"
     },
     module: {
         loaders: [
@@ -12,8 +17,16 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel?optional[]=runtime'
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract( 'css-loader?minimize')
             }
         ]
     },
+    plugins: [
+        new ExtractTextPlugin("[name].css"),
+        new webpack.optimize.UglifyJsPlugin()
+    ],
     devtool: 'source-map'
 };
