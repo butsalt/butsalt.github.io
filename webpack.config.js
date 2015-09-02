@@ -20,7 +20,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract( 'css-loader?minimize')
+                loader: ExtractTextPlugin.extract( 'css-loader?minimize&sourceMap' )
             }
         ]
     },
