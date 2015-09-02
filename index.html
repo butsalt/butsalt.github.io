@@ -7,17 +7,28 @@
 <script type="text/javascript">
 	var TOTAL = 4;
 	var count = 0;
-	function ready( num ){
-		console.log(num);
-		if( ++count === TOTAL ){
+	var domContentLoaded = false;
+	function ready(){
+		count++;
+		init();
+	}
+
+	function init(){
+		if( count === TOTAL && domContentLoaded ){
 			page.init();
 		}
 	}
+
+	document.addEventListener( 'DOMContentLoaded', function(){
+		domContentLoaded = true;
+		init();
+		
+	} );
 </script>
-<link rel="stylesheet" type="text/css" href="./styles/normalize.css" onload="ready(0)">
-<link rel="stylesheet" type="text/css" href="http://fonts.useso.com/css?family=Open+Sans|Montserrat:700" onload="ready(1)">
-<link rel="stylesheet" type="text/css" href="./styles/global.css" onload="ready(2)">
-<script type="text/javascript" src="./dist/page.js" onload="ready(3)"></script>
+<link rel="stylesheet" type="text/css" href="./styles/normalize.css" onload="ready()">
+<link rel="stylesheet" type="text/css" href="http://fonts.useso.com/css?family=Open+Sans|Montserrat:700" onload="ready()">
+<link rel="stylesheet" type="text/css" href="./styles/global.css" onload="ready()">
+<script type="text/javascript" src="./dist/page.js" onload="ready()"></script>
 </head>
 <body>
 <header class="center">
