@@ -4,10 +4,20 @@
 <meta charset="UTF-8">
 <title>butSalt</title>
 <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="./styles/normalize.css">
-<link rel="stylesheet" type="text/css" href="http://fonts.useso.com/css?family=Open+Sans|Montserrat:700">
-<link rel="stylesheet" type="text/css" href="./styles/global.css">
-<script type="text/javascript" src="./dist/bundle.js" defer></script>
+<script type="text/javascript">
+	var TOTAL = 4;
+	var count = 0;
+	function ready(){
+		if( ++count === TOTAL ){
+			page.init();
+		}
+	}
+</script>
+<link rel="stylesheet" type="text/css" href="./styles/normalize.css" onload="ready()">
+<link rel="stylesheet" type="text/css" href="http://fonts.useso.com/css?family=Open+Sans|Montserrat:700" onload="ready()">
+<link rel="stylesheet" type="text/css" href="./styles/global.css" onload="ready()">
+<script type="text/javascript" src="./dist/page.js" onload="ready()"></script>
+
 </head>
 <body>
 <header class="center">

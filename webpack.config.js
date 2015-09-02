@@ -2,7 +2,9 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: './dist',
-        filename: 'bundle.js'
+        filename: 'page.js',
+        libraryTarget: "var",
+        library: "page"
     },
     module: {
         loaders: [

@@ -112,4 +112,4 @@ function paintCircle( e, color ){
 	_.animate( paint );
 }
 
-load();
+export { load };

@@ -40,4 +40,4 @@ function scrollHandler( e ){
 	}
 }
 
-load();
+export { load };

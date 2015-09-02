@@ -1,3 +1,11 @@
-import header from './header';
-import main from './main';
-import button from './button';
+import * as header from './header';
+import * as main from './main';
+import * as button from './button';
+
+export default {
+	init: function(){
+		header.load();
+		main.load();
+		button.load();
+	}
+};

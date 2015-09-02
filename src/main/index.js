@@ -10,4 +10,4 @@ function transform( el ){
 	el.style.setProperty( 'top', el.offsetTop + 'px' );
 }
 
-load();
+export { load };
