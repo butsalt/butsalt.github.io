@@ -52,6 +52,10 @@
 	
 	var _header2 = _interopRequireDefault(_header);
 	
+	var _main = __webpack_require__(68);
+	
+	var _main2 = _interopRequireDefault(_main);
+	
 	var _button = __webpack_require__(66);
 	
 	var _button2 = _interopRequireDefault(_button);
@@ -93,7 +97,7 @@
 	function transform(el) {
 		var h1El = el.getElementsByTagName('h1')[0];
 		cache.set(el, {
-			thresholdValue: h1El.offsetTop + h1El.offsetHeight + 1,
+			thresholdValue: h1El.offsetTop + h1El.offsetHeight + 10,
 			reachedThreshold: false
 		});
 	
@@ -1327,6 +1331,28 @@
 		animationDuration: 200 //ms
 	};
 	module.exports = exports["default"];
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _interopRequireWildcard = __webpack_require__(50)['default'];
+	
+	var _util = __webpack_require__(51);
+	
+	var _ = _interopRequireWildcard(_util);
+	
+	function load() {
+		_.toArray(document.getElementsByTagName('main')).forEach(transform);
+	}
+	
+	function transform(el) {
+		el.style.setProperty('top', el.offsetTop + 'px');
+	}
+	
+	load();
 
 /***/ }
 /******/ ]);
