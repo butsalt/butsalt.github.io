@@ -8,7 +8,7 @@ function load(){
 }
 
 function transform( el ){
-	var h1El = el.getElementsByTagName('h1')[0];
+	let h1El = el.getElementsByTagName('h1')[0];
 	cache.set( el, {
 		thresholdValue: h1El.offsetTop + h1El.offsetHeight + 10,
 		reachedThreshold: false
@@ -17,6 +17,8 @@ function transform( el ){
 	let handler = scrollHandler.bind(el);
 	document.addEventListener( 'scroll', handler );
 	document.addEventListener( 'mousewheel', handler );
+
+	handler();
 }
 
 function scrollHandler( e ){
