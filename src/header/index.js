@@ -8,10 +8,30 @@ function load(){
 }
 
 function transform( el ){
-	let h1El = el.getElementsByTagName('h1')[0];
+	let h1El = el.querySelector('h1');
 	cache.set( el, {
-		thresholdValue: h1El.offsetTop + h1El.offsetHeight + 10,
+		thresholdValue: el.offsetTop + h1El.offsetTop + h1El.offsetHeight + 10,
 		reachedThreshold: false
+	} );
+
+	let infoEl = el.querySelector('div');
+	let pEl = infoEl.querySelectorAll('p')[1];
+	let iconEl = infoEl.querySelector('.icon');
+	let iconSize = pEl.offsetTop + pEl.offsetHeight;
+
+	iconEl.style.setProperty( 'width', iconSize + 'px' );
+	iconEl.style.setProperty( 'height', iconSize + 'px' );
+
+	let trackSize = Math.sin( Math.PI/4 ) * iconSize;
+	let deltaSize = (iconSize - trackSize)/2;
+
+	_.toArray(
+		document.querySelectorAll('.track')
+	).forEach( function( el ){
+		el.style.setProperty( 'width', trackSize + 'px' );
+		el.style.setProperty( 'height', trackSize + 'px' );
+		el.style.setProperty( 'top', deltaSize + 'px' );
+		el.style.setProperty( 'left', deltaSize + 'px' );
 	} );
 
 	let handler = scrollHandler.bind(el);
@@ -36,8 +56,8 @@ function scrollHandler( e ){
 	}else{
 		if( data.reachedThreshold ){
 			data.reachedThreshold = false;
-			me.style.setProperty( 'position', 'static' );
-			me.style.setProperty( 'top', 'auto' );
+			me.style.setProperty( 'position', 'relative' );
+			me.style.setProperty( 'top', '0' );
 		}
 	}
 }
