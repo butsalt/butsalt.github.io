@@ -3,30 +3,27 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        page: './src/index.js'
+        bundle: './src/index.js'
     },
     output: {
         path: './dist',
         filename: '[name].js',
-        libraryTarget: "var",
-        library: "[name]"
     },
     module: {
         loaders: [
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel?optional[]=runtime'
+                loader: 'babel'
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract( 'css-loader?minimize&sourceMap' )
+                loader: ExtractTextPlugin.extract('css-loader?sourceMap')
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin("[name].css"),
-        new webpack.optimize.UglifyJsPlugin()
+        new ExtractTextPlugin('[name].css')
     ],
-    devtool: 'source-map'
+    devtool: 'inline-source-map'
 };

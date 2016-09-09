@@ -1,3 +1,3 @@
 export default {
-	animationDuration: 200 //ms
+    animationDuration: 200 //ms
 };

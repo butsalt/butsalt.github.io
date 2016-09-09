@@ -7,13 +7,8 @@ import * as header from './header';
 import * as main from './main';
 import * as button from './button';
 
-export default {
-	init: function(){
-		_.ready()
-			.then( function(){
-				main.load();
-				header.load();
-				button.load();
-			} );
-	}
-};
+_.ready(function init () {
+    main.load();
+    header.load();
+    button.load();
+});

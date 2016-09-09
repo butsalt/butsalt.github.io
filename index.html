@@ -4,30 +4,7 @@
 <meta charset="UTF-8">
 <title>butSalt</title>
 <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
-<script type="text/javascript">
-	var TOTAL = 2;
-	var count = 0;
-	var domContentLoaded = false;
-	function ready(){
-		count++;
-		init();
-	}
-
-	function init(){
-		if( count === TOTAL && domContentLoaded ){
-			page.init();
-		}
-	}
-
-	document.addEventListener( 'DOMContentLoaded', function(){
-		domContentLoaded = true;
-		init();
-		
-	} );
-</script>
-<link rel="stylesheet" type="text/css" href="http://fonts.useso.com/css?family=Open+Sans|Montserrat:700">
-<link rel="stylesheet" type="text/css" href="./dist/page.css" onload="ready()">
-<script type="text/javascript" src="./dist/page.js" onload="ready()"></script>
+<link rel="stylesheet" type="text/css" href="/dist/bundle.css">
 </head>
 <body>
 <header class="center">
@@ -99,6 +76,7 @@
 			<p>极其喜欢它的简单粗暴。</p>
 		</section>
 	</article>
+	<script type="text/javascript" src="/dist/bundle.js"></script>
 </main>
 </body>
 </html>
