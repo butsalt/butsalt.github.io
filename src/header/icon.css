@@ -40,7 +40,7 @@
     }
 }
 
-.round:nth-child(1) .track{
+.round:nth-child(1) .track {
     animation-name: rotate-on-track-1;
     animation-duration: 2s;
     animation-timing-function: ease-in-out;
@@ -53,6 +53,12 @@
     100% {
         transform: rotateZ(420deg);
     }
+}
+
+.round:nth-child(2) .track {
+    animation-name: rotate-on-track-2;
+    animation-duration: 10s;
+    animation-timing-function: linear;
 }
 
 .dot {
