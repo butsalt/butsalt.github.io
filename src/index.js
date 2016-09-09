@@ -1,13 +1,12 @@
-require('normalize.css');
-require('../styles/global.css');
+import './index.css';
 
-import * as _ from './util';
+import _ from './util';
 
-import * as header from './header';
-import * as main from './main';
-import * as button from './button';
+import header from './header';
+import main from './main';
+import button from './button';
 
-_.ready(function init () {
+_.ready(function () {
     main.load();
     header.load();
     button.load();

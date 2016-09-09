@@ -1,0 +1,25 @@
+@import "./icon.css";
+
+header {
+    z-index: 999;
+    position: relative;
+    text-align: center;
+    background-color: #fff;
+}
+
+header > h1 {
+    text-align: left;
+}
+
+header > div {
+    position: relative;
+    display: inline-block;
+}
+
+header p:nth-of-type(1) {
+    margin: 0;
+    color: #444;
+    font-size: 2em;
+    letter-spacing: .5em;
+    text-indent: .5em;
+}

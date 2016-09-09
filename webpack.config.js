@@ -18,12 +18,20 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('css-loader?sourceMap')
+                loader: ExtractTextPlugin.extract('css?sourceMap!postcss')
             }
         ]
     },
     plugins: [
         new ExtractTextPlugin('[name].css')
     ],
+    postcss: function (webpack) {
+        return [
+            require('postcss-import')({
+                addDependencyTo: webpack
+            }),
+            require('autoprefixer')
+        ];
+    },
     devtool: 'inline-source-map'
 };

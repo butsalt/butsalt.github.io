@@ -1,0 +1,22 @@
+.button {
+    display: inline-block;
+    border-radius: .3em;
+    border: 1px #999 solid;
+    overflow: hidden;
+    position: relative;
+}
+
+.button a {
+    transition: .2s ease-in-out;
+    padding: 0 .5em;
+}
+
+.button a:hover {
+    color: #fff;
+}
+
+.button canvas {
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+}

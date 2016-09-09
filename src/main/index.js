@@ -1,4 +1,4 @@
-import * as _ from '../util';
+import _ from '../util';
 
 function load(){
     _.toArray(
@@ -10,6 +10,6 @@ function transform(el) {
     el.style.setProperty('top', el.offsetTop + 'px');
 }
 
-export {
+export default {
     load
 };

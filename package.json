@@ -1,6 +1,6 @@
 {
   "name": "butsalt.github.io",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Initalize my page.",
   "main": null,
   "repository": {
@@ -13,11 +13,14 @@
     "url": "https://github.com/butsalt/butsalt.github.io/issues"
   },
   "devDependencies": {
+    "autoprefixer": "^6.4.1",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-preset-es2015": "^6.14.0",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "postcss-import": "^8.1.2",
+    "postcss-loader": "^0.13.0",
     "webpack": "^1.13.2"
   },
   "dependencies": {

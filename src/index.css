@@ -1,0 +1,53 @@
+@import "normalize.css";
+
+body {
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    color: #444;
+    font-size: 16px;
+}
+
+h1 {
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header,
+main {
+    margin: 0 auto;
+    max-width: 800px;
+    left: 0;
+    right: 0;
+}
+
+main > h1,
+article > h1 {
+    font-size: 1.5em;
+}
+
+main {
+    position: absolute;
+}
+
+article {
+    margin-left: 2em;
+}
+
+article section > h1 {
+    font-size: 1em;
+}
+
+article section > h1::before {
+    content: "[";
+}
+
+article section > h1::after {
+    content: "]";
+}
+
+article p {
+    text-indent: 2em;
+}

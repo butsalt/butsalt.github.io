@@ -1,4 +1,6 @@
-import * as _ from '../util';
+import './index.css';
+
+import _ from '../util';
 let cache = new WeakMap();
 
 function load(){
@@ -65,6 +67,6 @@ function scrollHandler (e) {
     }
 }
 
-export {
+export default {
     load
 };

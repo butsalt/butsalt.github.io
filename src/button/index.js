@@ -1,4 +1,6 @@
-import * as _ from '../util';
+import './index.css';
+
+import _ from '../util';
 import config from '../config';
 
 let cache = new WeakMap();
@@ -110,6 +112,6 @@ function paintCircle (e, color) {
     _.animate(paint);
 }
 
-export {
+export default {
     load
 };

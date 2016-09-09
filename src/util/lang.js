@@ -10,7 +10,26 @@ function toArray(likeArr) {
     return arr;
 }
 
+function extend (target) {
+    Array.prototype.slice.call(
+        arguments,
+        1
+    ).forEach(
+        function (source) {
+            Object.keys(source)
+                .forEach(
+                    function (key) {
+                        if (!target.hasOwnProperty(key)) {
+                            target[key] = source[key];
+                        }
+                    }
+                );
+        }
+    );
+}
 
-export {
-    toArray
+
+export default {
+    toArray,
+    extend
 };

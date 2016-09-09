@@ -9,4 +9,6 @@ function animate(func) {
     }
 }
 
-export {animate};
+export default {
+    animate
+};
