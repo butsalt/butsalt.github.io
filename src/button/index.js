@@ -6,12 +6,16 @@ import config from '../config';
 let cache = new WeakMap();
 
 function load () {
+    if (_.support.touch) {
+        return;
+    }
     _.toArray(
-        document.getElementsByClassName('button')
+        document.getElementsByClassName('J-button')
     ).forEach(transform);
 }
 
 function transform (el) {
+    el.classList.add('button');
     var canvas = document.createElement('canvas');
     canvas.setAttribute('width', '0');
     canvas.setAttribute('height', '0');

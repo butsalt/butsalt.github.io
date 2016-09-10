@@ -3,5 +3,8 @@ function ready (handler) {
 }
 
 export default {
-    ready
+    ready,
+    support: {
+        touch: 'ontouchstart' in document.documentElement
+    }
 };
