@@ -1,7 +1,7 @@
 .button {
     display: inline-block;
     border-radius: .3em;
-    border: 1px #444 solid;
+    border: 1px currentColor solid;
     overflow: hidden;
     position: relative;
     transition: color .2s ease-in-out;
