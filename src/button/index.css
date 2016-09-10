@@ -6,6 +6,7 @@
     position: relative;
     transition: color .2s ease-in-out;
     padding: 0 .5em;
+    transform: translate3d(0, 0, 0);
 }
 
 .button:hover {

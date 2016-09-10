@@ -37,7 +37,11 @@ function initCanvas () {
     let me = this;
     let data = cache.get(me);
 
-    let rect = me.getBoundingClientRect();
+    let boundingClientRect = me.getBoundingClientRect();
+    let rect = {
+        width: Math.ceil(boundingClientRect.width),
+        height: Math.ceil(boundingClientRect.height)
+    };
     data.rect = rect;
 
     let canvas = data.canvas;
