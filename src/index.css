@@ -56,6 +56,10 @@ li {
     line-height: 2;
 }
 
+article a {
+    border-bottom: 1px currentColor dashed;
+}
+
 .book-list li::before {
     content: "《";
 }
