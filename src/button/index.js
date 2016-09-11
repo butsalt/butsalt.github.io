@@ -26,7 +26,7 @@ function transform (el) {
 
     cache.set(el, {
         canvas,
-        rect: null
+        extent: null
     });
 
     let firstEl = el.childNodes[0];
@@ -37,16 +37,16 @@ function initCanvas () {
     let me = this;
     let data = cache.get(me);
 
-    let boundingClientRect = me.getBoundingClientRect();
-    let rect = {
-        width: Math.ceil(boundingClientRect.width),
-        height: Math.ceil(boundingClientRect.height)
+    let rect = me.getBoundingClientRect();
+    let extent = {
+        width: Math.ceil(rect.width),
+        height: Math.ceil(rect.height)
     };
-    data.rect = rect;
+    data.extent = rect;
 
     let canvas = data.canvas;
-    canvas.setAttribute('width', rect.width);
-    canvas.setAttribute('height', rect.height);
+    canvas.setAttribute('width', extent.width);
+    canvas.setAttribute('height', extent.height);
 
     me.removeEventListener('mouseenter', initCanvas);
 }
@@ -60,28 +60,32 @@ function leaveHandler (e) {
 }
 
 function calDistance ({x: x1, y: y1}, x2, y2) {
-    return Math.sqrt(
-        Math.pow(x1 - x2, 2) +
-        Math.pow(y1 - y2, 2)
+    return Math.ceil(
+        Math.sqrt(
+            Math.pow(x1 - x2, 2) +
+            Math.pow(y1 - y2, 2)
+        )
     );
 }
 
 function calRadius(pos, {width, height}) {
-    return Math.max(
-        calDistance(pos, 0, 0),
-        calDistance(pos, 0, height),
-        calDistance(pos, width, 0),
-        calDistance(pos, width, height)
+    return Math.ceil(
+        Math.max(
+            calDistance(pos, 0, 0),
+            calDistance(pos, 0, height),
+            calDistance(pos, width, 0),
+            calDistance(pos, width, height)
+        )
     );
 }
 
 function paintCircle (e, color) {
     let me = this;
 
-    let x = e.offsetX-1;
-    let y = e.offsetY-1;
+    let x = e.offsetX - 1;
+    let y = e.offsetY - 1;
 
-    let {canvas, rect} = cache.get(me);
+    let {canvas, extent} = cache.get(me);
     let ctx = canvas.getContext('2d');
 
     let radius = calRadius(
@@ -89,7 +93,7 @@ function paintCircle (e, color) {
             x,
             y
         },
-        rect
+        extent
     );
     let {animationDuration} = config;
 
