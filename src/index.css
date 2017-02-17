@@ -35,8 +35,13 @@ main {
     padding-bottom: 30px;
 }
 
-article {
-    margin-left: 2em;
+article,
+ul {
+    padding-left: 2em;
+}
+
+ul {
+    list-style-position: inside;
 }
 
 article section > h1 {
@@ -67,5 +72,10 @@ li {
 @media screen and (min-width: 801px) {
     article p {
         text-indent: 2em;
+    }
+
+    article,
+    ul {
+        padding-left: 4em;
     }
 }
