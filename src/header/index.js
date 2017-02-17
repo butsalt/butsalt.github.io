@@ -21,14 +21,6 @@ function transform (el) {
 
     let infoEl = el.querySelector('div');
     let pEl = infoEl.querySelectorAll('p')[1];
-    let iconEl = infoEl.querySelector('.icon');
-    let iconSize = pEl.offsetTop + pEl.offsetHeight;
-
-    iconEl.style.setProperty('width', iconSize + 'px');
-    iconEl.style.setProperty('height', iconSize + 'px');
-
-    let trackSize = Math.sin(Math.PI / 4) * iconSize;
-    let deltaSize = (iconSize - trackSize) / 2;
 
     _.toArray(
         document.querySelectorAll('.track')

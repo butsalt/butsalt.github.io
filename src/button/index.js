@@ -52,7 +52,7 @@ function initCanvas () {
 }
 
 function enterHandler (e) {
-    paintCircle.call(this, e, '#444');
+    paintCircle.call(this, e, '#000');
 }
 
 function leaveHandler (e) {
