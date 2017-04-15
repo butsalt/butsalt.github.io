@@ -1,22 +1,22 @@
 .button {
-    display: inline-block;
-    border-radius: .3em;
-    border: 1px currentColor solid;
-    overflow: hidden;
-    position: relative;
-    transition: color .2s ease-in-out;
-    padding: 0 .5em;
-    transform: translate3d(0, 0, 0);
+  display: inline-block;
+  border-radius: .3em;
+  border: 1px currentColor solid;
+  overflow: hidden;
+  position: relative;
+  transition: color .2s ease-in-out;
+  padding: 0 .5em;
+  transform: translate3d(0, 0, 0);
 }
 
 .button:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .button canvas {
-    pointer-events: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
 }

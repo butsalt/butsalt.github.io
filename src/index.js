@@ -7,7 +7,7 @@ import main from './main';
 import button from './button';
 
 _.ready(function () {
-    main.load();
-    header.load();
-    button.load();
+  main.load();
+  header.load();
+  button.load();
 });
