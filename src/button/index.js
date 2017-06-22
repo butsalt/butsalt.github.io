@@ -5,7 +5,7 @@ import config from '../config';
 
 let cache = new WeakMap();
 
-function load () {
+function load() {
   if (_.support.touch) {
     return;
   }
@@ -14,7 +14,7 @@ function load () {
   ).forEach(transform);
 }
 
-function transform (el) {
+function transform(el) {
   el.classList.add('button');
   var canvas = document.createElement('canvas');
   canvas.setAttribute('width', '0');
@@ -33,7 +33,7 @@ function transform (el) {
   el.insertBefore(canvas, firstEl);
 }
 
-function initCanvas () {
+function initCanvas() {
   let me = this;
   let data = cache.get(me);
 
@@ -51,15 +51,15 @@ function initCanvas () {
   me.removeEventListener('mouseenter', initCanvas);
 }
 
-function enterHandler (e) {
+function enterHandler(e) {
   paintCircle.call(this, e, '#000');
 }
 
-function leaveHandler (e) {
+function leaveHandler(e) {
   paintCircle.call(this, e, '#fff');
 }
 
-function calDistance ({x: x1, y: y1}, x2, y2) {
+function calDistance({x: x1, y: y1}, x2, y2) {
   return Math.ceil(
     Math.sqrt(
       Math.pow(x1 - x2, 2) +
@@ -79,7 +79,7 @@ function calRadius(pos, {width, height}) {
   );
 }
 
-function paintCircle (e, color) {
+function paintCircle(e, color) {
   let me = this;
 
   let x = e.offsetX - 1;
@@ -98,7 +98,7 @@ function paintCircle (e, color) {
   let {animationDuration} = config;
 
   let startTime = null;
-  function paint (timestamp) {
+  function paint(timestamp) {
     if (startTime === null) {
       startTime = timestamp;
     }

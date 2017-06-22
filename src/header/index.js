@@ -9,7 +9,7 @@ function load(){
   ).forEach( transform );
 }
 
-function transform (el) {
+function transform(el) {
   let h1El = el.querySelector('h1');
   cache.set(
     el,
@@ -24,7 +24,7 @@ function transform (el) {
 
   _.toArray(
     document.querySelectorAll('.track')
-  ).forEach(function (el) {
+  ).forEach(function(el) {
     el.style.setProperty('width', trackSize + 'px');
     el.style.setProperty('height', trackSize + 'px');
     el.style.setProperty('top', deltaSize + 'px');
@@ -38,7 +38,7 @@ function transform (el) {
   handler();
 }
 
-function scrollHandler (e) {
+function scrollHandler(e) {
   let me = this;
   let data = cache.get(me);
 
