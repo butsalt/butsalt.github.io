@@ -6,7 +6,7 @@ import header from './header';
 import main from './main';
 import button from './button';
 
-_.ready(function() {
+_.ready(function () {
   main.load();
   header.load();
   button.load();

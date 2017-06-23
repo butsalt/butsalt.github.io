@@ -24,7 +24,7 @@ function transform(el) {
 
   _.toArray(
     document.querySelectorAll('.track')
-  ).forEach(function(el) {
+  ).forEach(function (el) {
     el.style.setProperty('width', trackSize + 'px');
     el.style.setProperty('height', trackSize + 'px');
     el.style.setProperty('top', deltaSize + 'px');
